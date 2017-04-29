@@ -1,0 +1,41 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:GSC_RF010_FornecedorExterno_V401_WS">
+  <soapenv:Header>
+    <urn:AuthenticationInfo>
+      <urn:userName>CETEC72</urn:userName>
+      <urn:password>7562-CETEC</urn:password>
+    </urn:AuthenticationInfo>
+  </soapenv:Header>
+  <soapenv:Body>
+    <urn:SetAtualizacao>
+      <urn:arquivoxml>
+        <urn:info_arquivo>
+          <urn:tipoarquivo>3</urn:tipoarquivo>
+          <urn:idarquivo>$idarquivo</urn:idarquivo>
+          <urn:datahorageracaoarquivo>$datahorageracaoarquivo</urn:datahorageracaoarquivo>
+          <urn:comunicacao>2</urn:comunicacao>
+        </urn:info_arquivo>
+        <urn:info_fornecedor>
+          <urn:idfornecedor>SGP000000044411</urn:idfornecedor>
+          <urn:nomefornecedor>4LINUX SOFTWARE E COM DE PROGRAMAS LTDA</urn:nomefornecedor>
+        </urn:info_fornecedor>
+        <urn:retorno>
+          <urn:codigodobanco>104</urn:codigodobanco>
+          <urn:chamado_caixa>
+            <urn:no_wo>$wo</urn:no_wo>
+          </urn:chamado_caixa>
+          <urn:tipo_retorno>$tipo_retorno</urn:tipo_retorno>
+          <urn:descricao>$desc</urn:descricao>
+          <urn:chamado_fornecedor>$chamado_fornecedor</urn:chamado_fornecedor>
+        </urn:retorno>
+        <urn:agendamento>
+          <urn:data>$dataagenda</urn:data>
+          <urn:contato>$contato</urn:contato>
+          <urn:telefone/>
+        </urn:agendamento>
+        <urn:atendimento>
+        </urn:atendimento>
+        <urn:servicos/>
+      </urn:arquivoxml>
+    </urn:SetAtualizacao>
+  </soapenv:Body>
+</soapenv:Envelope>

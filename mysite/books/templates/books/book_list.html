@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block javascript %}
+  <script src="{% static 'books/js/books.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+  <h1 class="page-header">Escolha a ação que deseja executar</h1>
+
+  <p>
+    <button type="button" class="btn btn-success js-create-book" data-url="{% url 'book_create' %}">
+      <span class="glyphicon glyphicon-refresh"></span>
+      Atualizar Chamado
+    </button>
+     <button type="button" class="btn btn-danger js-database-book" data-url="{% url 'book_database' %}">
+      <span class="glyphicon glyphicon-list-alt"></span>
+      Atualizar Base
+    </button>
+  </p>
+  <div  id="LoadingImage" style="display:none;" >
+    <img style="position: absolute;left: 0;right: 0;margin-left: auto;margin-right: auto;" src="/static/img/load.gif" />
+  </div>
+  <table class="table" id="book-table">
+    <thead>
+      <tr>
+        <th>Req</th>
+        <th>Wo</th>
+        <th>Data Arquivo</th>
+        <th>Last Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% include 'books/includes/partial_book_list.html' %}
+    </tbody>
+  </table>
+
+  <div class="modal fade" id="modal-book">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+      </div>
+    </div>
+  </div>
+{% endblock %}
