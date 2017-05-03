@@ -10,9 +10,17 @@ $(function () {
       dataType: 'json',
       beforeSend: function () {
         $("#modal-book").modal("show");
+        $("#LoadingImage").show();
+
       },
       success: function (data) {
         $("#modal-book .modal-content").html(data.html_form);
+        $("#LoadingImage").hide();
+      },
+      error: function(data){
+        alert("Não foi possivel executar a ação!");
+        $("#modal-book").modal("hide");
+        $("#LoadingImage").hide();
       }
     });
   };
@@ -31,10 +39,11 @@ $(function () {
           $("#modal-book").modal("hide");
           $("#LoadingImage").hide();
           alert("GSC Atualizado com sucesso!");
+          // alert("GSC Atualizado com sucesso!");
           document.location.reload();
       },
       error: function(data){
-        alert("Não foi possivel executar a ação.");
+        alert("Não foi possivel executar a ação!");
         $("#modal-book").modal("hide");
         $("#LoadingImage").hide();
       }
@@ -58,6 +67,10 @@ $(function () {
         $("#LoadingImage").hide();
         alert("Banco de Dados Atualizado com sucesso!");
         document.location.reload();
+      },
+      error: function(data){
+        alert("Não foi possivel executar a ação!");
+        $("#LoadingImage").hide();
       }
     });
   };
@@ -67,17 +80,8 @@ $(function () {
 
   /* Binding */
 
-  // Create book
   $(".js-create-book").click(loadForm);
-  // $("#modal-book").on("submit", ".js-book-create-form", saveForm);
-
-  // Update book
   $(".js-database-book").click(progressForm);
-  // $("#book-table").on("click", ".js-database-book", progressForm);
   $("#modal-book").on("submit", ".js-book-create-form", saveForm);
-
-  // // Delete book
-  // $("#book-table").on("click", ".js-delete-book", loadForm);
-  // $("#modal-book").on("submit", ".js-book-delete-form", saveForm);
 
 });

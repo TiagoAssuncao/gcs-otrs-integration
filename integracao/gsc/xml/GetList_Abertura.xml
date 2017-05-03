@@ -10,7 +10,7 @@
       <urn:Qualification>CPY000000004871</urn:Qualification>
       <urn:Token>IDGAA5V0G4QW1AOBJGU7T5QHNKYF6Q</urn:Token>
       <urn:Capturado>true</urn:Capturado>
-      <urn:maxLimit>5</urn:maxLimit>
+      <urn:maxLimit>10</urn:maxLimit>
     </urn:GetList_Abertura>
   </soapenv:Body>
 </soapenv:Envelope>

@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from django.shortcuts import render, get_object_or_404
 from django.http import JsonResponse
 from django.template.loader import render_to_string
@@ -6,7 +8,7 @@ from django.contrib import messages
 
 from .models import Book
 from .forms import BookForm
-from mysite.books.tasks import *
+from integracao.gsc.tasks import *
 
 
 
@@ -22,7 +24,7 @@ def save_book_form(request, form, template_name):
         if form.is_valid():
             req = request.POST["req"]
             status = request.POST["status"]
-            descricao = request.POST["descricao"]
+            descricao = request.POST["descricao"].encode('ascii', 'ignore').decode('ascii')
             data_agendamento = request.POST["data_agendamento"]
             contato_agendamento = request.POST["contato_agendamento"]
             if status == "":

@@ -1,7 +1,9 @@
+# -*- coding: utf-8 -*-
+
 from __future__ import unicode_literals
 
 from django.apps import AppConfig
 
 
 class BooksConfig(AppConfig):
-    name = 'mysite.books'
+    name = 'integracao.gsc'

@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>INTEGRAÇÃO GSC</title>
     <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/sweetalert.css' %}" rel="stylesheet">
   </head>
   <body id="wrapper">
     {% include 'includes/header.html' %}
@@ -15,6 +16,8 @@
     </div>
     <script src="{% static 'js/jquery-3.1.1.min.js' %}"></script>
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/sweetalert-dev.js' %}"></script>
+    <script src="{% static 'js/sweetalert.min.js' %}"></script>
     {% block javascript %}
     {% endblock %}
   </body>

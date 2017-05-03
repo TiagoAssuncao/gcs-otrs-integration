@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from .models import Book
 import requests
 import ssl
@@ -29,7 +31,7 @@ def request(xml):
 
 def get_list_abertura():
     
-    xml = open('/home/jadson/projetos/4linux/simple-ajax-crud/mysite/books/xml/GetList_Abertura.xml', 'r').read()
+    xml = open('integracao/gsc/xml/GetList_Abertura.xml', 'r').read()
     call = request(xml)
     response = get_list_response(call, getList)
     return response
@@ -51,9 +53,12 @@ def insert_in_database():
         create_item(item)
 
 
+
+
+
 def set_aceite_recusa(req, desc, status):
     query = Book.objects.get(req=req)
-    xml = open('/home/jadson/projetos/gsc/integracao/xml/SetAceiteRecusa.xml', 'r').read()
+    xml = open('integracao/gsc/xml/SetAceiteRecusa.xml', 'r').read()
     Template = kajiki.XMLTemplate(xml.decode('latin1'))
     create_xml = Template(dict(idarquivo=query.idarquivo,datahorageracaoarquivo=query.datahorageracaoarquivo,wo=query.wo,tipo_retorno=status,chamado_fornecedor=query.id,desc=desc)).render()    
     call = request(create_xml)
@@ -63,7 +68,7 @@ def set_aceite_recusa(req, desc, status):
 
 def set_atualizacao(req, desc, status, dataagenda, contato):
     query = Book.objects.get(req=req)
-    xml = open('/home/jadson/projetos/gsc/integracao/xml/SetAtualizacao.xml', 'r').read()
+    xml = open('integracao/gsc/xml/SetAtualizacao.xml', 'r').read()
     Template = kajiki.XMLTemplate(xml.decode('latin1'))
     create_xml = Template(dict(idarquivo=query.idarquivo,datahorageracaoarquivo=query.datahorageracaoarquivo,wo=query.wo,tipo_retorno=status,chamado_fornecedor=query.id,desc=desc,dataagenda=dataagenda,contato=contato)).render()    
     call = request(create_xml)
