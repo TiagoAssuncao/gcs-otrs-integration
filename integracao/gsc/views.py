@@ -15,6 +15,8 @@ from integracao.gsc.tasks import *
 
 def book_list(request):
     books = Book.objects.all()
+    for book in books:
+     print(book.idarquivo)
     return render(request, 'books/book_list.html', {'books': books})
 
 
@@ -29,7 +31,7 @@ def save_book_form(request, form, template_name):
             contato_agendamento = request.POST["contato_agendamento"]
             if status == "":
                 data['form_is_valid'] = False
-            elif (status == "1" or status == "2"):
+            elif (status == "1" or status == "2" and data_agendamento == ""):
                 result = set_aceite_recusa(req, descricao, status)
                 if (result['tipoarquivo'] == '4' and result['processado'] == '1'):
                     Book.objects.filter(req=req).update(status=status)
@@ -65,11 +67,14 @@ def book_create(request):
 def book_database(request):
     data = dict()
     if insert_in_database():
+        print("AAAAAAAAAAAAAAAAAH")
         books = Book.objects.all()
         data['html_book_list'] = render_to_string('books/includes/partial_book_list.html', {
             'books': books
         })
     else:
+        print("AAAAAAAAAAAAAAAAAH")
+        print("AAAAAAAAAAAAAAAAAH")
         data['html_form'] = render_to_string('books/includes/partial_book_update.html', request=request)
     return JsonResponse(data)
 

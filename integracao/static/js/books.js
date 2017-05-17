@@ -14,11 +14,16 @@ $(function () {
 
       },
       success: function (data) {
-        $("#modal-book .modal-content").html(data.html_form);
+	if(typeof modalbook === 'undefined'){
+		modalbook = $("#modal-book .modal-content").html(data.html_form);
+	} else {
+		$("#modal-book").modal("show");
+	}
         $("#LoadingImage").hide();
       },
       error: function(data){
-        alert("Não foi possivel executar a ação!");
+	sweetAlert("Oops...", "Something went wrong!", "error");
+        // alert("Não foi possivel executar a ação!");
         $("#modal-book").modal("hide");
         $("#LoadingImage").hide();
       }
@@ -38,12 +43,22 @@ $(function () {
       success: function (data) {
           $("#modal-book").modal("hide");
           $("#LoadingImage").hide();
-          alert("GSC Atualizado com sucesso!");
           // alert("GSC Atualizado com sucesso!");
-          document.location.reload();
+	swal({
+	  title: "Atualizado!",
+	  text: "GCS atualizado com sucesso!",
+	  type: "success",
+	  confirmButtonText: "Ok!",
+	  closeOnConfirm: false,
+	  closeOnCancel: false
+	},
+	function(isConfirm){
+		 document.location.reload();
+	});
       },
       error: function(data){
-        alert("Não foi possivel executar a ação!");
+	sweetAlert("Oops...", "Não foi possível executar a ação", "error");
+        // alert("Não foi possivel executar a ação!");
         $("#modal-book").modal("hide");
         $("#LoadingImage").hide();
       }
@@ -65,11 +80,23 @@ $(function () {
       },
       success: function (data) {
         $("#LoadingImage").hide();
-        alert("Banco de Dados Atualizado com sucesso!");
-        document.location.reload();
+        // alert("Banco de Dados Atualizado com sucesso!");
+	// swal("Good job!", "Banco de Dados atualizado com Sucesso!", "success");
+	swal({
+	  title: "Atualizado!",
+	  text: "Base de dados atualizada com Sucesso!",
+	  type: "success",
+	  confirmButtonText: "Ok!",
+	  closeOnConfirm: false,
+	  closeOnCancel: false
+	},
+	function(isConfirm){
+		 document.location.reload();
+	});
       },
       error: function(data){
-        alert("Não foi possivel executar a ação!");
+	sweetAlert("Oops...", "Não foi possível executar a ação", "error");
+        // alert("Não foi possivel executar a ação!");
         $("#LoadingImage").hide();
       }
     });

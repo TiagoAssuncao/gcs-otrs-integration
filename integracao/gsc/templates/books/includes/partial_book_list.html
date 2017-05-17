@@ -1,4 +1,6 @@
 {% for book in books %}
+{% if book.status !=  4 %}
+{% if book.status !=  5 %}
   <tr>
     <td>{{ book.req }}</td>
     <td>{{ book.wo }}</td>
@@ -17,6 +19,8 @@
       </button> -->
     </td>
   </tr>
+{% endif %}
+{% endif %}
 {% empty %}
   <tr>
     <td colspan="8" class="text-center bg-warning">No book</td>

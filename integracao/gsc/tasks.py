@@ -23,6 +23,7 @@ getResult = [
 
 def request(xml):
     if hasattr(ssl, '_create_unverified_context'):
+        print("TA AQQUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUI")
         ssl._create_default_https_context = ssl._create_unverified_context
     client = "https://sigscext.caixa.gov.br/arsys/services/ARService?server=arsapp-int.caixa&webService=GSC_RF010_FornecedorExterno_V401_WS"
     header = {"Accept-Encoding": "gzip,deflate","Content-Type": "text/xml;charset=UTF-8","SOAPAction": "urn:GSC_RF010_FornecedorExterno_V401_WS/GetList_Abertura","Content-Length": "626","Host": "sigscext.caixa.gov.br","Connection": "Keep-Alive","User-Agent": "Apache-HttpClient/4.1.1 (java 1.5)"}
@@ -31,7 +32,7 @@ def request(xml):
 
 def get_list_abertura():
     
-    xml = open('integracao/gsc/xml/GetList_Abertura.xml', 'r').read()
+    xml = open('/var/www/gsc-integracao/integracao/gsc/xml/GetList_Abertura.xml', 'r').read()
     call = request(xml)
     response = get_list_response(call, getList)
     return response
@@ -58,7 +59,7 @@ def insert_in_database():
 
 def set_aceite_recusa(req, desc, status):
     query = Book.objects.get(req=req)
-    xml = open('integracao/gsc/xml/SetAceiteRecusa.xml', 'r').read()
+    xml = open('/var/www/gsc-integracao/integracao/gsc/xml/SetAceiteRecusa.xml', 'r').read()
     Template = kajiki.XMLTemplate(xml.decode('latin1'))
     create_xml = Template(dict(idarquivo=query.idarquivo,datahorageracaoarquivo=query.datahorageracaoarquivo,wo=query.wo,tipo_retorno=status,chamado_fornecedor=query.id,desc=desc)).render()    
     call = request(create_xml)
@@ -68,7 +69,7 @@ def set_aceite_recusa(req, desc, status):
 
 def set_atualizacao(req, desc, status, dataagenda, contato):
     query = Book.objects.get(req=req)
-    xml = open('integracao/gsc/xml/SetAtualizacao.xml', 'r').read()
+    xml = open('/var/www/gsc-integracao/integracao/gsc/xml/SetAtualizacao.xml', 'r').read()
     Template = kajiki.XMLTemplate(xml.decode('latin1'))
     create_xml = Template(dict(idarquivo=query.idarquivo,datahorageracaoarquivo=query.datahorageracaoarquivo,wo=query.wo,tipo_retorno=status,chamado_fornecedor=query.id,desc=desc,dataagenda=dataagenda,contato=contato)).render()    
     call = request(create_xml)
