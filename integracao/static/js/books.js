@@ -135,5 +135,6 @@ $(function () {
   $(".js-update-book").click(loadUpdateForm);
   $(".js-database-book").click(progressForm);
   $("#modal-book").on("submit", ".js-book-create-form", saveForm);
+  $('#book-table').DataTable();
 
 });
