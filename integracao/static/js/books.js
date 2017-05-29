@@ -2,6 +2,30 @@ $(function () {
 
   /* Functions */
 
+  var loadUpdateForm = function () {
+    var btn = $(this);
+    $.ajax({
+      url: btn.attr("data-url"),
+      type: 'get',
+      dataType: 'json',
+      beforeSend: function () {
+        $("#modal-book").modal("show");
+        $("#LoadingImage").show();
+
+      },
+      success: function (data) {
+          $("#modal-book .modal-content").html(data.html_form);
+        $("#LoadingImage").hide();
+      },
+      error: function(data){
+	sweetAlert("Oops...", "Something went wrong!", "error");
+        // alert("Não foi possivel executar a ação!");
+        $("#modal-book").modal("hide");
+        $("#LoadingImage").hide();
+      }
+    });
+  };
+
   var loadForm = function () {
     var btn = $(this);
     $.ajax({
@@ -108,6 +132,7 @@ $(function () {
   /* Binding */
 
   $(".js-create-book").click(loadForm);
+  $(".js-update-book").click(loadUpdateForm);
   $(".js-database-book").click(progressForm);
   $("#modal-book").on("submit", ".js-book-create-form", saveForm);
 

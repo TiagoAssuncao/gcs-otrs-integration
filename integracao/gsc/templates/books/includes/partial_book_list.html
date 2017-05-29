@@ -1,28 +1,21 @@
 {% for book in books %}
 {% if book.status !=  4 %}
 {% if book.status !=  5 %}
-  <tr>
+<tr>
     <td>{{ book.req }}</td>
     <td>{{ book.wo }}</td>
     <td>{{ book.datahorageracaoarquivo }}</td>
     <td>{{ book.status }}</td>
     <td style="width: 150px">
-<!--       <button type="button"
-              class="btn btn-warning btn-sm js-update-book"
-              data-url="{% url 'book_update' book.id %}">
-        <span class="glyphicon glyphicon-pencil"></span> Edit
-      </button>
-      <button type="button"
-              class="btn btn-danger btn-sm js-delete-book"
-              data-url="{% url 'book_delete' book.id %}">
-        <span class="glyphicon glyphicon-trash"></span> Delete
-      </button> -->
+        <button type="button" class="btn btn-success js-update-book" data-url="{% url 'book_update' book.id %}">
+            <span class="glyphicon glyphicon-refresh"></span>
+        </button>
     </td>
-  </tr>
+</tr>
 {% endif %}
 {% endif %}
 {% empty %}
-  <tr>
+<tr>
     <td colspan="8" class="text-center bg-warning">No book</td>
-  </tr>
+</tr>
 {% endfor %}

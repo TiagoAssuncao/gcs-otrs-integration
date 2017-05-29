@@ -16,7 +16,7 @@ from integracao.gsc.tasks import *
 def book_list(request):
     books = Book.objects.all()
     for book in books:
-     print(book.idarquivo)
+     print(book.descricao)
     return render(request, 'books/book_list.html', {'books': books})
 
 
@@ -67,14 +67,11 @@ def book_create(request):
 def book_database(request):
     data = dict()
     if insert_in_database():
-        print("AAAAAAAAAAAAAAAAAH")
         books = Book.objects.all()
         data['html_book_list'] = render_to_string('books/includes/partial_book_list.html', {
             'books': books
         })
     else:
-        print("AAAAAAAAAAAAAAAAAH")
-        print("AAAAAAAAAAAAAAAAAH")
         data['html_form'] = render_to_string('books/includes/partial_book_update.html', request=request)
     return JsonResponse(data)
 

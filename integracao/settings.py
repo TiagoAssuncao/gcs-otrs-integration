@@ -18,6 +18,7 @@ STATIC_ROOT = "/var/www/gsc-integracao/integracao/static/"
 
 STATIC_URL = '/var/www/gsc-integracao/integracao/gsc/static/'
 
+PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
