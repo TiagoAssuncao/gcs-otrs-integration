@@ -14,7 +14,7 @@ from integracao.gsc.tasks import *
 
 
 def book_list(request):
-    books = Book.objects.all()
+    books = Book.objects.all().filter(is_activated=True)
     for book in books:
      print(book.descricao)
     return render(request, 'books/book_list.html', {'books': books})

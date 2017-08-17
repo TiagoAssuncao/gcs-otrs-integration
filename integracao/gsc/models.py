@@ -29,6 +29,7 @@ class Book(models.Model):
     descricao =  models.TextField()
     status = models.PositiveSmallIntegerField(choices=STATUS, blank=True, null=True)
     contato_agendamento = models.CharField(max_length=512, blank=True, null=True)
+    is_activated = models.BooleanField(default=True)
 
 
 # class Integracao(models.Model):
