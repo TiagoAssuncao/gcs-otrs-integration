@@ -40,10 +40,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
     'widget_tweaks',
-
     'integracao.gsc',
+    'integracao.dust_auth',
 ]
 
 MIDDLEWARE = [

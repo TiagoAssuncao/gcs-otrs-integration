@@ -1,0 +1,66 @@
+<html>
+<head>
+    {% load static %}
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <script src="{% static "js/jquery-1.9.1.js" %}"></script>
+    {% load bootstrap3 %}
+
+    {# Load CSS and JavaScript #}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+
+    {# Display django.contrib.messages as Bootstrap alerts #}
+    {% bootstrap_messages %}
+    <title>DusTwitter</title>
+    <link type="text/css" rel="stylesheet" href="{% static "css/style.css" %}"  media="screen,projection"/>
+</head>
+<body>
+
+    <nav id='navbar-size'class="text-primary navbar navbar-default">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <a id='title-size' class="navbar-brand text-danger" href="/">DusTwitter</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    {% if user.is_authenticated %}
+                        <li><a id='color-navbar'href="/">Olá, {{user}}</a></li>
+                        {% if user.is_staff %}
+                            <li><a id='color-navbar'href="#">Permissões</a></li>
+                        {% endif %}
+                        <li><a id='color-navbar'href="{% url "auth:logout" %}">Logout</a></li>
+
+                    {% else %}
+                        <li><a id='color-navbar'href="{% url "auth:login" %}">Login</a></li>
+                        <li><a id='color-navbar'href="{% url "auth:signup" %}">Sign Up</a></li>
+                    {% endif %}
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+
+
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            {% for current_user in users %}
+                <div id='painel-margin' class="panel panel-success">
+                    <div class="panel-heading">{{current_user.current_user}}</div>
+                    <div class="panel-body">
+                        <form action="{% url "auth:perm" %}" method="post">
+                            {% csrf_token %}
+                            <label class="checkbox-inline"><input name="can_read" type="checkbox" {{current_user.can_read}}>Pode ler</label>
+                            <label class="checkbox-inline"><input name="can_comment" type="checkbox" {{current_user.can_comment}}>Pode comentar</label>
+                            <input type="hidden" name="user_id" id="" value="{{current_user.id}}" />
+                            <button type="submit" class="btn btn-success pull-right">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+</body>
+</html>

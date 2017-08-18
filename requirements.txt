@@ -8,7 +8,6 @@ greenlet==0.4.12
 Kajiki==0.6.1
 nine==1.0.0
 packaging==16.8
-pkg-resources==0.0.0
 Pygments==2.2.0
 pyparsing==2.2.0
 python-otrs==0.3.0

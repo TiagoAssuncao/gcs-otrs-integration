@@ -1,0 +1,46 @@
+<html>
+    <head>
+        {% load static %}
+
+        {# Load CSS and JavaScript #}
+        <link type="text/css" rel="stylesheet" href="{% static "css/bootstrap.min.css" %}"  media="screen,projection"/>
+
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+        <title>Signup</title>
+    </head>
+    <body>
+        <div class="container">
+
+            <div class="row">
+                <div class="col-md-4  col-md-offset-4">
+
+                    {% if messages %}
+                    <ul class="messages">
+                        {% for message in messages %}
+                        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                    <form class="form-signin" method="POST" action="{% url "auth:signup"%}">
+                        {% csrf_token %}
+                        <h2 class="form-signin-heading">Registration</h2>
+                        <label for="inputEmail" class="sr-only">Username</label>
+                        <input type="user" id="inputEmail" name="username" class="form-control" placeholder="Username" required autofocus>
+                        <label for="inputEmail" class="sr-only">Email address</label>
+                        <input type="email" id="inputEmail" name="email" class="form-control" placeholder="Email address" required autofocus>
+                        <label for="inputPassword" class="sr-only">Password</label>
+                        <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" required>
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" value="remember-me"> Remember me
+                            </label>
+                        </div>
+                        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+                    </form>
+
+                </div>
+            </div>
+        </div> <!-- /container -->
+    </body>
+</html>

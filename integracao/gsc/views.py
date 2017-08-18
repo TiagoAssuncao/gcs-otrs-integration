@@ -4,6 +4,8 @@ from django.shortcuts import render, get_object_or_404
 from django.http import JsonResponse
 from django.template.loader import render_to_string
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+
 
 
 from .models import Book
@@ -12,7 +14,7 @@ from integracao.gsc.tasks import *
 
 
 
-
+@login_required(login_url='/auth/login/')
 def book_list(request):
     books = Book.objects.all().filter(is_activated=True)
     for book in books:
@@ -20,6 +22,7 @@ def book_list(request):
     return render(request, 'books/book_list.html', {'books': books})
 
 
+@login_required(login_url='/auth/login/')
 def save_book_form(request, form, template_name):
     data = dict()
     if request.method == 'POST':
@@ -57,6 +60,7 @@ def save_book_form(request, form, template_name):
     return JsonResponse(data)
 
 
+@login_required(login_url='/auth/login/')
 def book_create(request):
     if request.method == 'POST':
         form = BookForm(request.POST )
@@ -64,6 +68,7 @@ def book_create(request):
         form = BookForm()
     return save_book_form(request, form,  'books/includes/partial_book_create.html')
 
+@login_required(login_url='/auth/login/')
 def book_database(request):
     data = dict()
     if insert_in_database():
@@ -77,6 +82,7 @@ def book_database(request):
 
 
 
+@login_required(login_url='/auth/login/')
 def book_update(request, pk):
     book = get_object_or_404(Book, pk=pk)
     if request.method == 'POST':
@@ -86,6 +92,7 @@ def book_update(request, pk):
     return save_book_form(request, form, 'books/includes/partial_book_update.html')
 
 
+@login_required(login_url='/auth/login/')
 def book_delete(request, pk):
     book = get_object_or_404(Book, pk=pk )
     data = dict()
